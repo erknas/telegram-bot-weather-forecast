@@ -34,6 +34,13 @@ func BotInit() error {
 
 		var text string
 
+		if w.Condition == nil {
+			text = fmt.Sprintf("Не удалось получить данные о погоде для города `%s`. Ошибка в названии города", update.Message.Text)
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
+			bot.Send(msg)
+			continue
+		}
+
 		switch w.Condition[0].Description {
 		case "пасмурно":
 			text = fmt.Sprintf(`%s
