@@ -8,6 +8,8 @@ import (
 	"os"
 )
 
+const hPaToMm = 0.75
+
 func BotInit() error {
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -45,69 +47,69 @@ func BotInit() error {
 		case "пасмурно":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌥️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "облачно с прояснениями":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  ⛅
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "ясно":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  ☀️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "плотный туман":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌫️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "небольшой снег":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌨️
-Давление: %dмм рт. ст.️
+Давление: %.f мм рт. ст.️
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "дождь":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌧️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "переменная облачность":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  ☁️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "небольшой дождь":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌨️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "небольшая облачность":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  ⛅
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		case "сильный дождь":
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s  🌨️
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		default:
 			text = fmt.Sprintf(`%s
 Температура: %.f°C, %s
-Давление: %dмм рт. ст.
+Давление: %.f мм рт. ст.
 Ветер: %.f м/с
-Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, w.Main.Pressure, w.Wind.Speed, w.Main.Humidity)
+Влажность: %d%%`, w.Name, w.Main.Temp, w.Condition[0].Description, float64(w.Main.Pressure)*hPaToMm, w.Wind.Speed, w.Main.Humidity)
 		}
 
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
